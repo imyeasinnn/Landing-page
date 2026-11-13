@@ -16,9 +16,16 @@ export function SectionHeading({
 }) {
   return (
     <Reveal className={cx('max-w-2xl', align === 'center' && 'mx-auto text-center', className)}>
-      {eyebrow && <p className="mb-3 text-[13px] font-medium text-accent">{eyebrow}</p>}
-      <h2 className="text-balance text-[32px] font-semibold leading-[1.1] tracking-[-0.025em] sm:text-[40px]">{title}</h2>
-      {description && <p className="mt-4 text-pretty text-[16px] leading-relaxed text-muted sm:text-[17px]">{description}</p>}
+      {eyebrow && (
+        <div className={cx('mb-4 flex items-center gap-2.5', align === 'center' && 'justify-center')}>
+          <span aria-hidden className="h-px w-6 bg-accent/45" />
+          <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-accent-ink">{eyebrow}</p>
+        </div>
+      )}
+      <h2 className="text-balance text-[30px] font-semibold leading-[1.1] tracking-[-0.03em] sm:text-[40px]">{title}</h2>
+      {description && (
+        <p className="mt-4 text-pretty text-[16px] leading-relaxed text-muted sm:text-[17px]">{description}</p>
+      )}
     </Reveal>
   )
 }

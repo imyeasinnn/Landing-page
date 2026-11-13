@@ -1,34 +1,39 @@
 import { cx } from '../lib/cx'
 import { brand } from '../content'
 
-export function LogoMark({ className }: { className?: string }) {
+/*
+  A labelled placeholder box, used inside the product mockups (not the site
+  chrome). The real mark lives in /public/brand/logo-mark.svg.
+*/
+export function LogoSlot({ className }: { className?: string }) {
   return (
     <span
       aria-hidden
       className={cx(
-        'depth relative grid size-8 shrink-0 place-items-center rounded-[11px] bg-gradient-to-br from-surface-2 to-raised',
+        'grid shrink-0 place-items-center rounded-[9px] border border-dashed border-line-strong bg-surface-2 text-[8px] font-semibold uppercase tracking-[0.14em] text-faint',
         className,
       )}
     >
-      <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="url(#logo-g)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-        <defs>
-          <linearGradient id="logo-g" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#ff9a6b" />
-            <stop offset="1" stopColor="#ffc46b" />
-          </linearGradient>
-        </defs>
-        <path d="M6 16 12 6l6 10" />
-        <circle cx="12" cy="18.5" r="1.2" fill="url(#logo-g)" stroke="none" />
-      </svg>
+      Logo
     </span>
   )
 }
 
-export function Logo({ className }: { className?: string }) {
+// Replace /public/brand/logo-mark.svg (or the src below) with your own file to
+// swap the mark. The name is kept beside it because the mark has no wordmark.
+export function Logo({ className, large = false }: { className?: string; large?: boolean }) {
   return (
-    <a href="#" className={cx('inline-flex items-center gap-2.5 text-[15px] font-semibold tracking-tight text-fg', className)}>
-      <LogoMark />
-      {brand.name}
+    <a href="#" aria-label={`${brand.name} home`} className={cx('inline-flex items-center gap-2.5 text-fg', className)}>
+      <img
+        src="/brand/logo-mark.svg"
+        alt=""
+        width={744}
+        height={1000}
+        className={cx('w-auto shrink-0', large ? 'h-10' : 'h-[30px] md:h-9')}
+      />
+      <span className={cx('font-semibold tracking-[-0.025em]', large ? 'text-[17px]' : 'text-[16px]')}>
+        {brand.name}
+      </span>
     </a>
   )
 }

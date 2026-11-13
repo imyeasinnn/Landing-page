@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 744 1000" width="744" height="1000" role="img" aria-label="RenovReach">
+  <defs>
+    <linearGradient id="leaf" gradientUnits="userSpaceOnUse" x1="60" y1="120" x2="330" y2="820">
+      <stop offset="0" stop-color="#2ca94f"/>
+      <stop offset="1" stop-color="#0a6b31"/>
+    </linearGradient>
+    <linearGradient id="ribbon" gradientUnits="userSpaceOnUse" x1="700" y1="40" x2="300" y2="980">
+      <stop offset="0" stop-color="#8ee6ab"/>
+      <stop offset="1" stop-color="#2fb65f"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#leaf)" d="M4 118C150 122 305 170 370 262C405 330 388 500 330 640C300 720 258 788 223 817Z"/>
+  <path fill="url(#ribbon)" d="M557 4L163 1000L439 1000L744 122C762 55 690 -2 557 4Z"/>
+</svg>

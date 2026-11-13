@@ -12,7 +12,7 @@ export function Nav() {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12)
+    const onScroll = () => setScrolled(window.scrollY > 8)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -26,78 +26,87 @@ export function Nav() {
   }, [open])
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
-      <motion.nav
-        initial={{ y: -16, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={cx(
-          'relative flex h-14 w-full max-w-[1120px] items-center justify-between rounded-control-lg px-3 pl-4 transition-[background-color,box-shadow] duration-300',
-          scrolled || open ? 'depth bg-bg/70 shadow-[0_10px_40px_-20px_rgb(0_0_0/0.8)] backdrop-blur-xl' : 'bg-transparent',
-        )}
-      >
+    <header
+      id="top"
+      className={cx(
+        'fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow] duration-300',
+        scrolled || open
+          ? 'border-b border-line bg-white/88 shadow-[0_8px_30px_-24px_rgb(4_60_40/0.4)] backdrop-blur-xl'
+          : 'border-b border-transparent bg-white/70 backdrop-blur-sm',
+      )}
+    >
+      <nav className="mx-auto flex h-16 w-full max-w-[1160px] items-center justify-between gap-4 px-5 sm:px-8">
         <Logo />
-        <ul className="hidden items-center gap-1 md:flex">
+
+        <ul className="hidden items-center gap-0.5 md:flex">
           {nav.links.map((link) => (
             <li key={link.label}>
               <a
                 href={link.href}
-                className="inline-flex h-9 items-center rounded-[12px] px-3 text-[14px] text-muted transition-colors hover:bg-white/[0.06] hover:text-fg"
+                className="inline-flex h-9 items-center rounded-[9px] px-3 text-[14px] font-medium text-muted transition-colors hover:bg-surface-2 hover:text-fg"
               >
                 {link.label}
               </a>
             </li>
           ))}
         </ul>
+
         <div className="hidden items-center gap-2 md:flex">
-          <Button variant="ghost" href={nav.signIn.href} className="h-9 px-3 text-[14px]">
-            {nav.signIn.label}
+          <Button variant="secondary" href={nav.demo.href} className="h-9 rounded-[10px] px-4 text-[13.5px]">
+            {nav.demo.label}
           </Button>
-          <Button href={nav.cta.href} className="h-9 rounded-[12px] px-4 text-[14px]">
+          <Button href={nav.cta.href} className="h-9 rounded-[10px] px-4 text-[13.5px]">
             {nav.cta.label}
           </Button>
         </div>
-        <button
-          type="button"
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-          className="grid size-9 place-items-center rounded-[12px] text-fg transition-colors hover:bg-white/[0.06] md:hidden"
-        >
-          {open ? <X className="size-5" /> : <Menu className="size-5" />}
-        </button>
-      </motion.nav>
+
+        <div className="flex items-center gap-2 md:hidden">
+          <Button href={nav.cta.href} className="h-9 rounded-[10px] px-3.5 text-[13px]">
+            {nav.cta.label}
+          </Button>
+          <button
+            type="button"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            onClick={() => setOpen((v) => !v)}
+            className="grid size-9 place-items-center rounded-[10px] border border-line text-fg transition-colors hover:bg-surface-2"
+          >
+            {open ? <X className="size-4.5" /> : <Menu className="size-4.5" />}
+          </button>
+        </div>
+      </nav>
 
       <AnimatePresence>
         {open && (
           <motion.div
+            id="mobile-menu"
             key="sheet"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25 }}
-            className="depth absolute inset-x-4 top-[76px] rounded-card bg-surface p-3 shadow-glow md:hidden"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden border-t border-line bg-white md:hidden"
           >
-            <ul className="flex flex-col">
-              {nav.links.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="flex h-12 items-center rounded-control px-3 text-[16px] text-fg transition-colors hover:bg-white/[0.06]"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-2 grid grid-cols-2 gap-2 border-t border-line pt-3">
-              <Button variant="secondary" href={nav.signIn.href} onClick={() => setOpen(false)}>
-                {nav.signIn.label}
-              </Button>
-              <Button href={nav.cta.href} onClick={() => setOpen(false)}>
-                {nav.cta.label}
-              </Button>
+            <div className="mx-auto w-full max-w-[1160px] px-5 py-4 sm:px-8">
+              <ul className="flex flex-col">
+                {nav.links.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className="flex h-12 items-center rounded-[10px] px-3 text-[16px] font-medium text-fg transition-colors hover:bg-surface-2"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-3 border-t border-line pt-3">
+                <Button variant="secondary" href={nav.demo.href} className="w-full" onClick={() => setOpen(false)}>
+                  {nav.demo.label}
+                </Button>
+              </div>
             </div>
           </motion.div>
         )}
