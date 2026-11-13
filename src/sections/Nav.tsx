@@ -51,18 +51,25 @@ export function Nav() {
           ))}
         </ul>
 
-        <div className="hidden items-center gap-2 md:flex">
-          <Button variant="secondary" href={nav.demo.href} className="h-9 rounded-[10px] px-4 text-[13.5px]">
+        <div className="hidden items-center md:flex">
+          <Button
+            href={nav.demo.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="h-9 rounded-[10px] px-4 text-[13.5px]"
+          >
             {nav.demo.label}
-          </Button>
-          <Button href={nav.cta.href} className="h-9 rounded-[10px] px-4 text-[13.5px]">
-            {nav.cta.label}
           </Button>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
-          <Button href={nav.cta.href} className="h-9 rounded-[10px] px-3.5 text-[13px]">
-            {nav.cta.label}
+          <Button
+            href={nav.demo.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="h-9 rounded-[10px] px-3.5 text-[13px]"
+          >
+            {nav.demo.label}
           </Button>
           <button
             type="button"
@@ -103,7 +110,13 @@ export function Nav() {
                 ))}
               </ul>
               <div className="mt-3 border-t border-line pt-3">
-                <Button variant="secondary" href={nav.demo.href} className="w-full" onClick={() => setOpen(false)}>
+                <Button
+                  href={nav.demo.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full"
+                  onClick={() => setOpen(false)}
+                >
                   {nav.demo.label}
                 </Button>
               </div>

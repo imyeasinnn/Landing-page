@@ -34,7 +34,13 @@ export function Pricing() {
                 Every core platform feature, in one plan.
               </p>
 
-              <Button size="lg" href={pricing.cta.href} className="mt-6 w-full">
+              <Button
+                size="lg"
+                href={pricing.cta.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 w-full"
+              >
                 {pricing.cta.label}
                 <ArrowRight />
               </Button>

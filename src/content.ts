@@ -10,9 +10,10 @@ export const brand = {
   tagline: 'Customer engagement and reputation management for service businesses.',
 }
 
-export const links = {
-  signup: '#signup',
-  demo: '#demo',
+// The only call to action on the page. Booking opens in a new tab.
+export const booking = {
+  label: 'Book a Demo',
+  href: 'https://cal.com/renov-reach/review',
 }
 
 export const nav = {
@@ -22,8 +23,7 @@ export const nav = {
     { label: 'Pricing', href: '#pricing' },
     { label: 'FAQ', href: '#faq' },
   ],
-  demo: { label: 'Book a Demo', href: links.demo },
-  cta: { label: 'Get Started', href: links.signup },
+  demo: booking,
 }
 
 export const hero = {
@@ -33,8 +33,7 @@ export const hero = {
   emphasis: 'More Reviews and Repeat Business.',
   description:
     'Automate customer follow-ups, collect reviews, manage your reputation, and build stronger customer relationships with RenovReach.',
-  primary: { label: 'Get Started', href: links.signup },
-  secondary: { label: 'Book a Demo', href: links.demo },
+  cta: booking,
   footnote: '$297/month · Monthly billing · No annual contract',
   flow: ['Job completed', 'Review request sent', '5-star review received'],
 }
@@ -165,7 +164,7 @@ export const pricing = {
   description: 'Every V1 feature, one monthly price, no annual commitment.',
   price: '$297',
   period: '/month',
-  cta: { label: 'Get Started', href: links.signup },
+  cta: booking,
   includesLabel: 'Everything included',
   includes: [
     'All core platform features',
@@ -209,9 +208,9 @@ export const faq = {
 }
 
 export const cta = {
-  title: 'Ready to turn finished jobs into reviews and repeat customers?',
-  primary: { label: 'Get Started', href: links.signup },
-  secondary: { label: 'Book a Demo', href: links.demo },
+  title: 'Ready to get more reviews from every job?',
+  description: 'Book a quick demo and see how RenovReach works for your business.',
+  button: booking,
 }
 
 export const footer = {

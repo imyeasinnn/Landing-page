@@ -54,12 +54,15 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.22, ease }}
             className="mt-8 flex w-full flex-col items-center gap-2.5 sm:w-auto sm:flex-row sm:gap-3"
           >
-            <Button size="lg" href={hero.primary.href} className="w-full sm:w-auto">
-              {hero.primary.label}
+            <Button
+              size="lg"
+              href={hero.cta.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto"
+            >
+              {hero.cta.label}
               <ArrowRight />
-            </Button>
-            <Button size="lg" variant="secondary" href={hero.secondary.href} className="w-full sm:w-auto">
-              {hero.secondary.label}
             </Button>
           </motion.div>
 
